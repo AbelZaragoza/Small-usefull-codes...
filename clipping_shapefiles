@@ -1,0 +1,31 @@
+"""
+This code utilizes GeoPandas to clip a shapefile (.shp) based on another shapefile.
+
+Requirements:
+- Python 3.7.3
+- GeoPandas 0.5.1
+
+Dependency installation:
+pip install geopandas
+
+Usage:
+1. Ensure you have Python 3.7.3 installed.
+2. Install GeoPandas by running 'pip install geopandas'.
+3. Modify the paths of the shapefiles in 'file_da_tagliare' and 'area_di_taglio'.
+4. Execute the code to clip the file and save the result.
+
+"""
+
+import geopandas as gpd
+
+# Path of the shapefile to be clipped
+file_to_clip = gpd.read_file(r'C:\Users\abel9\Desktop\central_Italy_DB\Litologie_area_studio.shp')
+
+# Path of the shapefile to clip with
+clip_area = gpd.read_file(r'C:\Users\abel9\Desktop\central_Italy_DB\Area_studio_limiti_Regioni\Area_Studio.shp')
+
+# Perform the clipping operation
+clipped_file = gpd.overlay(file_to_clip, clip_area, how='intersection')
+
+# Save the result to a new shapefile
+clipped_file.to_file(r'C:\Users\abel9\Desktop\provaaaaaaa.shp', driver='ESRI Shapefile')
